@@ -33,6 +33,8 @@ class PagesController extends AppController
     public function initialize() {
         parent::initialize();
         // $this->Auth->allow(['']);
+        $this->loadModel('Products');
+        $this->loadModel('Categories');
     }
 
     public function beforeRender(Event $event) {
@@ -82,9 +84,18 @@ class PagesController extends AppController
         
         $user = $this->Auth->user();
         $page = $this->setPageVariables('Home', 'Dashboard');
+        $categories = $this->Categories->find()->toList();
+        $products = $this->Products->find() 
+                    ->order(['Products.id' => 'desc'])
+                    ->toList();
+
 
         $this->set(compact('user'));
-        $this->set(compact('page', $page));
+        $this->set(compact('page'));
+        $this->set(compact('categories'));
+        $this->set(compact('products'));
+        $this->set(compact('page'));
+
     }
 
     public function setPageVariables($title, $subtitle) {
