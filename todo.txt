@@ -1,0 +1,24 @@
+UI 
+  > Use the new templates - ok 
+  > Logo - ok
+
+Account
+  > login - ok 
+  > logout - ok 
+  > signup - ok
+  
+Dashboard 
+  > Main Page 
+    - sidebar - ok  
+    - navbar  - ok 
+    - content - ok 
+    - footer - ok
+  
+Posting 
+  > Create 
+  > Delete 
+  > Update
+  > View 
+  > Design 
+
+  
