@@ -3,7 +3,7 @@
         <div class="logo">
             <a href="index.html">
                 <!-- <img src="assets/image/icon/logo.png" alt="logo"> -->
-                <h3>BUSIO</h3>
+                <h3>BIOSYS</h3>
             </a>
         </div>
     </div>
@@ -12,9 +12,9 @@
             <nav>
                 <ul class="metismenu" id="menu">
                     <li class="active"><a href="#"><i class="ti-home"></i><span>Home</span></a></li>
-                    <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                    <li><a href="#"><i class="ti-truck"></i> <span>Products</span></a></li>
-                    <li><a href="#"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addNewProductModal">SELL IN BUSIO</button></a></li>
+                    <li><a href="/users"><i class="ti-user"></i> <span>Users</span></a></li>
+                    <li><a href="/payrolls"><i class="ti-panel"></i> <span>Payroll</span></a></li>
+                    <!-- <li><a href="#"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addNewProductModal">SELL IN BUSIO</button></a></li> -->
                     <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
                 </ul>
             </nav>

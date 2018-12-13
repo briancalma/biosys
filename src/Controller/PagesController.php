@@ -19,6 +19,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
+use Cake\Filesystem\File;
 
 /**
  * Static content controller
@@ -33,8 +34,7 @@ class PagesController extends AppController
     public function initialize() {
         parent::initialize();
         // $this->Auth->allow(['']);
-        $this->loadModel('Products');
-        $this->loadModel('Categories');
+        $this->loadModel('Logs'); 
     }
 
     public function beforeRender(Event $event) {
@@ -82,20 +82,53 @@ class PagesController extends AppController
 
     public function home() {
         
+        // $file = fopen(WWW_ROOT.'/file/GLogData_.txt','r');
+        // $lines = file(WWW_ROOT.'/file/GLogData_.txt');
+
+        // $logs = [];
+
+        // array_shift($lines);
+
+        // foreach($lines as $line) {
+        //     $temp = preg_split('/\s+/', $line);
+            
+        //     $holder = [
+        //                 "id" => $temp[0],
+        //                 "employee_id" => $temp[2],
+        //                 "log_date" => $temp[7],
+        //                 "time" => $temp[8]
+        //               ];
+
+            
+            
+        //     array_push($logs, $holder);
+        //     // debug($temp);
+        // }
+
+        // // debug($logs);
+
+        // foreach($logs as $log) {
+            
+        //     $log_item = $this->Logs->newEntity();
+
+        //     $new_log = [
+        //         "user_id" => $log["employee_id"],
+        //         "log_date" => $log["log_date"], 
+        //         "time" => $log["time"]
+        //     ];
+
+        //     $log_item = $this->Logs->patchEntity($log_item, $new_log);
+        //     $this->Logs->save($log_item);
+        // }
+
+        // exit();
+        
+        
         $user = $this->Auth->user();
-        $page = $this->setPageVariables('Home', 'Dashboard');
-        $categories = $this->Categories->find()->toList();
-        $products = $this->Products->find() 
-                    ->order(['Products.id' => 'desc'])
-                    ->toList();
-
-
+        $page = $this->setPageVariables('Home', 'Dashboard');   
         $this->set(compact('user'));
         $this->set(compact('page'));
-        $this->set(compact('categories'));
-        $this->set(compact('products'));
-        $this->set(compact('page'));
-
+        // exit();
     }
 
     public function setPageVariables($title, $subtitle) {
@@ -104,4 +137,4 @@ class PagesController extends AppController
             "sub_title" => $subtitle
         ];
     }
-}   
+}

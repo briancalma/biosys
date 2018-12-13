@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property |\Cake\ORM\Association\HasMany $Logs
+ *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -38,6 +40,10 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Logs', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**
@@ -95,6 +101,12 @@ class UsersTable extends Table
             ->scalar('profile_pic')
             ->maxLength('profile_pic', 255)
             ->allowEmpty('profile_pic');
+
+        $validator
+            ->scalar('account_type')
+            ->maxLength('account_type', 255)
+            ->requirePresence('account_type', 'create')
+            ->notEmpty('account_type');
 
         return $validator;
     }

@@ -1,24 +1,14 @@
-UI 
-  > Use the new templates - ok 
-  > Logo - ok
+User 
+  > create
+  > read 
+  > update 
+  > delete 
 
-Account
-  > login - ok 
-  > logout - ok 
-  > signup - ok
-  
-Dashboard 
-  > Main Page 
-    - sidebar - ok  
-    - navbar  - ok 
-    - content - ok 
-    - footer - ok
-  
-Posting 
-  > Create 
-  > Delete 
-  > Update
-  > View 
-  > Design 
+Payroll Generation  
+  > upload payroll 
+  > generate 
+  > payroll preview 
+  > payroll date 
+  > display payroll 
+  > print payroll
 
-  

@@ -26,6 +26,7 @@ class UsersFixture extends TestFixture
         'gender' => ['type' => 'string', 'length' => 11, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'address' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'profile_pic' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'account_type' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => 'employee', 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -56,8 +57,9 @@ class UsersFixture extends TestFixture
                 'gender' => 'Lorem ips',
                 'address' => 'Lorem ipsum dolor sit amet',
                 'profile_pic' => 'Lorem ipsum dolor sit amet',
-                'created' => '2018-12-02 16:35:48',
-                'modified' => '2018-12-02 16:35:48'
+                'account_type' => 'Lorem ipsum dolor sit amet',
+                'created' => '2018-12-04 07:18:30',
+                'modified' => '2018-12-04 07:18:30'
             ],
         ];
         parent::init();

@@ -3,7 +3,7 @@
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> BUSIO </title>
+    <title> BIOSYS </title>
     <?= $this->Html->meta('icon') ?>
 
      <!-- amchart css -->
@@ -23,7 +23,10 @@
     <?= $this->Html->css('styles.css') ?>
     <?= $this->Html->css('responsive.css') ?>
     
-    <?= $this->Html->script('vendor/modernizr-2.8.3.min.js') ?>
+    <?= $this->Html->script('vendor/modernizr-2.8.3.min.js') ?> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" media="print">
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -258,6 +261,100 @@
     <?= $this->Html->script('pie-chart.js') ?>
     <?= $this->Html->script('plugins.js') ?>
     <?= $this->Html->script('scripts.js') ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+
+            let date = new Date();
+            let month = '' + (date.getMonth() + 1);
+            let day = '' + date.getDate();
+            let year = date.getFullYear();
+
+            date = year + '-' + month + '-' + day;
+
+            // console.log(date);
+            
+
+            $('#calendar').fullCalendar({   
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                defaultDate: date,
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                // {
+                //     title: 'All Day Event',
+                //     start: '2018-03-01'
+                // },
+                // {
+                //     title: 'Long Event',
+                //     start: '2018-03-07',
+                //     end: '2018-03-10'
+                // },
+                // {
+                //     id: 999,
+                //     title: 'Repeating Event',
+                //     start: '2018-03-09T16:00:00'
+                // },
+                // {
+                //     id: 999,
+                //     title: 'Repeating Event',
+                //     start: '2018-03-16T16:00:00'
+                // },
+                // {
+                //     title: 'Conference',
+                //     start: '2018-03-11',
+                //     end: '2018-03-13'
+                // },
+                // {
+                //     title: 'Meeting',
+                //     start: '2018-03-12T10:30:00',
+                //     end: '2018-03-12T12:30:00'
+                // },
+                // {
+                //     title: 'Lunch',
+                //     start: '2018-03-12T12:00:00'
+                // },
+                // {
+                //     title: 'Meeting',
+                //     start: '2018-03-12T14:30:00'
+                // },
+                // {
+                //     title: 'Happy Hour',
+                //     start: '2018-03-12T17:30:00'
+                // },
+                // {
+                //     title: 'Dinner',
+                //     start: '2018-03-12T20:00:00'
+                // },
+                // {
+                //     title: 'Birthday Party',
+                //     start: '2018-03-13T07:00:00'
+                // },
+                    // {
+                    //     title: '',
+                    //     url: 'http://google.com/',
+                    //     start: date
+                    // }
+                ],
+                dayClick: function(date, jsEvent, view) {
+                    // alert('Clicked on: ' + date.format());
+                    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                    // alert('Current view: ' + view.name);
+                    // change the day's background color just for fun
+                    window.location.href = 'payrolls/view/' + date;
+                    $(this).css('background-color', 'blue');
+
+
+                }
+            });
+        });
+    </script>
 </body>
 </html>

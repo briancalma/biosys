@@ -27,9 +27,12 @@ class UsersController extends AppController
     public function index()
     {   
         $this->viewBuilder()->setLayout('main');
-
-        $users = $this->paginate($this->Users);
+        $user = $this->Auth->user();
+        $page = $this->setPageVariables('Account', 'Employees');   
+        $users = $this->Users->find()->where(['account_type' => 'employee']);
         $this->set(compact('users'));
+        $this->set(compact('user'));
+        $this->set(compact('page'));
     }
 
     /**
@@ -55,17 +58,26 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
+        $this->viewBuilder()->setLayout('main');
+        $user = $this->Auth->user();
+        $page = $this->setPageVariables('Account', 'Employees');   
+        
+        $new_user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $new_user = $this->Users->patchEntity($new_user, $this->request->getData());
+            if ($this->Users->save($new_user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
+
+
         $this->set(compact('user'));
+        $this->set(compact('new_user'));
+        $this->set(compact('page'));
+
     }
 
     /**
@@ -152,5 +164,12 @@ class UsersController extends AppController
     {
         // By default deny access.
         return true;
+    }
+
+    public function setPageVariables($title, $subtitle) {
+        return [
+            "title" =>  $title,
+            "sub_title" => $subtitle
+        ];
     }
 }

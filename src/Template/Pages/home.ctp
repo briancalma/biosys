@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <?php foreach($products as $product): ?>
         <div class="col-lg-4 col-md-6 mt-5">
             <div class="card card-bordered" style="height:400px">
@@ -13,4 +13,4 @@
             </div>    
         </div>
     <?php endforeach; ?>
-</div>
+</div> -->

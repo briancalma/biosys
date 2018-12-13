@@ -3,8 +3,6 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
-
 /**
  * User Entity
  *
@@ -17,6 +15,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string|null $gender
  * @property string|null $address
  * @property string|null $profile_pic
+ * @property string $account_type
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
@@ -41,6 +40,7 @@ class User extends Entity
         'gender' => true,
         'address' => true,
         'profile_pic' => true,
+        'account_type' => true,
         'created' => true,
         'modified' => true
     ];
