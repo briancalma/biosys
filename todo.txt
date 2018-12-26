@@ -1,14 +1,23 @@
-User 
-  > create
-  > read 
-  > update 
-  > delete 
+Day to day payroll
+- late and absent
+  > Payroll record 
+  > Logs  
+- lunch breaks
+- OT
+- gap time in/out
 
-Payroll Generation  
-  > upload payroll 
-  > generate 
-  > payroll preview 
-  > payroll date 
-  > display payroll 
-  > print payroll
+- detailed benefits: sss,philhealth,pagibig table
+
+Special type of payrolls 
+- bonus
+- sick leaves
+- termination/warning
+- night shift
+- weekend works
+- regular holiday and special holiday computation
+
+Payslip generation 
+- individual pay slip
+- Tsaka pinapa revise po yung template ng payslip, 
+- logo of company in payslip
 

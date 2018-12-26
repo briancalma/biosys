@@ -9,9 +9,12 @@
         "cakephp/cakephp": "3.6.*",
         "cakephp/migrations": "^2.0.0",
         "cakephp/plugin-installer": "^1.0",
+        "dompdf/dompdf": "^0.8.3",
+        "friendsofcake/cakepdf": "^3.5",
         "josegonzalez/dotenv": "3.*",
         "maiconpinto/cakephp-adminlte-theme": "^1.0",
-        "mobiledetect/mobiledetectlib": "2.*"
+        "mobiledetect/mobiledetectlib": "2.*",
+        "tecnickcom/tcpdf": "^6.2"
     },
     "require-dev": {
         "cakephp/bake": "^1.1",

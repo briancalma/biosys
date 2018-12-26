@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenDate $start_date
  * @property \Cake\I18n\FrozenDate $end_date
  * @property string $file
+ * @property bool|null $is_thirteen_month_pay
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -33,6 +34,7 @@ class Payroll extends Entity
         'start_date' => true,
         'end_date' => true,
         'file' => true,
+        'is_thirteen_month_pay' => true,
         'created' => true,
         'modified' => true,
         'logs' => true

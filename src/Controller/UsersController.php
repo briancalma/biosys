@@ -15,23 +15,31 @@ class UsersController extends AppController
 {
 
     public function initialize()
-    {
+    { 
         parent::initialize();
-        $this->Auth->allow(['logout','add','signup']);
+        $this->loadModel('Logs');
+        # $this->Auth->allow(['logout','add','signup']);
+    }
+    
+    public function beforeRender(Event $event) {
+       
     }
 
-    public function beforeRender(Event $event) {
-        // $this->viewBuilder()->setLayout('main');
-    }
- 
+
     public function index()
     {   
         $this->viewBuilder()->setLayout('main');
+
         $user = $this->Auth->user();
-        $page = $this->setPageVariables('Account', 'Employees');   
-        $users = $this->Users->find()->where(['account_type' => 'employee']);
-        $this->set(compact('users'));
+        $page = $this->setPageVariables('Management', 'Employee List');   
+        $employees = $this->Users->find()
+                    ->where(['account_type' => 'employee'])
+                    ->order(['id' => 'desc'])
+                    ->all();
+
+
         $this->set(compact('user'));
+        $this->set(compact('employees'));
         $this->set(compact('page'));
     }
 
@@ -45,7 +53,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['Logs']
         ]);
 
         $this->set('user', $user);
@@ -57,14 +65,39 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
+    {   
         $this->viewBuilder()->setLayout('main');
+
         $user = $this->Auth->user();
-        $page = $this->setPageVariables('Account', 'Employees');   
-        
+        $page = $this->setPageVariables('Management', 'Add New Employee');   
+
+
         $new_user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $new_user = $this->Users->patchEntity($new_user, $this->request->getData());
+
+            $new_user->username = $this->request->getData('firstname').$this->request->getData('lastname');
+            $new_user->password = 'cgeek2019';
+            $new_user->rate_per_hour = $this->request->getData('rate');
+
+
+            $new_user->account_type = 'employee';
+            $new_user->sss = false;
+            $new_user->pagibig = false;
+            $new_user->philhealth = false;
+
+            foreach ($this->request->getData('benefits') as $benefit) {
+                if($benefit == 'sss') $new_user->sss = true;
+                if($benefit == 'pagibig') $new_user->pagibig = true;
+                if($benefit == 'philhealth') $new_user->philhealth = true;
+            }
+
+            // debug($this->request->getData());
+
+            // debug($new_user);
+
+            // exit();
+            
             if ($this->Users->save($new_user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -73,11 +106,10 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
 
+        //$this->set(compact('newuser'));
 
         $this->set(compact('user'));
-        $this->set(compact('new_user'));
         $this->set(compact('page'));
-
     }
 
     /**
@@ -89,19 +121,29 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
+
+        $this->viewBuilder()->setLayout('main');
+
+        $user = $this->Auth->user();
+        $page = $this->setPageVariables('Management', 'Edit Employee Record');   
+
+        $account = $this->Users->get($id, [
             'contain' => []
         ]);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $account = $this->Users->patchEntity($account, $this->request->getData());
+            if ($this->Users->save($account)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
+
+        $this->set(compact('account'));
         $this->set(compact('user'));
+        $this->set(compact('page'));
     }
 
     /**
@@ -159,12 +201,11 @@ class UsersController extends AppController
         }
     }
 
-
     public function isAuthorized($user)
     {
         // By default deny access.
         return true;
-    }
+    }  
 
     public function setPageVariables($title, $subtitle) {
         return [

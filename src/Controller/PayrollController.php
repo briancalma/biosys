@@ -13,7 +13,7 @@ use Cake\Event\Event;
 class PayrollController extends AppController
 {
     public function initialize()
-    {
+    { 
         parent::initialize();
         # $this->Auth->allow(['logout','add','signup']);
     }
@@ -57,6 +57,9 @@ class PayrollController extends AppController
         $payroll = $this->Payroll->newEntity();
         if ($this->request->is('post')) {
             $payroll = $this->Payroll->patchEntity($payroll, $this->request->getData());
+
+            # $payroll->is_thirteen_month_pay = $this->request->getData('is_thirteen_month_pay');
+            
             if ($this->Payroll->save($payroll)) {
                 $this->Flash->success(__('The payroll has been saved.'));
 

@@ -2,7 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-
+use Cake\Auth\DefaultPasswordHasher;
 /**
  * User Entity
  *
@@ -18,6 +18,16 @@ use Cake\ORM\Entity;
  * @property string $account_type
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property int $age
+ * @property string $birthdate
+ * @property string $department
+ * @property string $position
+ * @property float $rate_per_hour
+ * @property bool $philhealth
+ * @property bool $sss
+ * @property bool $pagibig
+ *
+ * @property \App\Model\Entity\Log[] $logs
  */
 class User extends Entity
 {
@@ -42,7 +52,16 @@ class User extends Entity
         'profile_pic' => true,
         'account_type' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'age' => true,
+        'birthdate' => true,
+        'department' => true,
+        'position' => true,
+        'rate_per_hour' => true,
+        'philhealth' => true,
+        'sss' => true,
+        'pagibig' => true,
+        'logs' => true
     ];
 
     /**

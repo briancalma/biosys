@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property |\Cake\ORM\Association\HasMany $Logs
+ * @property \App\Model\Table\LogsTable|\Cake\ORM\Association\HasMany $Logs
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -107,6 +107,49 @@ class UsersTable extends Table
             ->maxLength('account_type', 255)
             ->requirePresence('account_type', 'create')
             ->notEmpty('account_type');
+
+        $validator
+            ->integer('age')
+            ->requirePresence('age', 'create')
+            ->notEmpty('age');
+
+        $validator
+            ->scalar('birthdate')
+            ->maxLength('birthdate', 255)
+            ->requirePresence('birthdate', 'create')
+            ->notEmpty('birthdate');
+
+        $validator
+            ->scalar('department')
+            ->maxLength('department', 255)
+            ->requirePresence('department', 'create')
+            ->notEmpty('department');
+
+        $validator
+            ->scalar('position')
+            ->maxLength('position', 255)
+            ->requirePresence('position', 'create')
+            ->notEmpty('position');
+
+        $validator
+            ->numeric('rate_per_hour')
+            ->requirePresence('rate_per_hour', 'create')
+            ->notEmpty('rate_per_hour');
+
+        $validator
+            ->boolean('philhealth')
+            ->requirePresence('philhealth', 'create')
+            ->notEmpty('philhealth');
+
+        $validator
+            ->boolean('sss')
+            ->requirePresence('sss', 'create')
+            ->notEmpty('sss');
+
+        $validator
+            ->boolean('pagibig')
+            ->requirePresence('pagibig', 'create')
+            ->notEmpty('pagibig');
 
         return $validator;
     }

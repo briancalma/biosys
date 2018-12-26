@@ -16,6 +16,7 @@
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('font-awesome.min.css') ?>
     <?= $this->Html->css('themify-icons.css') ?>
+    <?= $this->Html->css('metisMenu.css') ?>
     <?= $this->Html->css('owl.carousel.min.css') ?>
     <?= $this->Html->css('slicknav.min.css') ?>
     <?= $this->Html->css('typography.css') ?>

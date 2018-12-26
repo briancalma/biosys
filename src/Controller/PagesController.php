@@ -35,6 +35,9 @@ class PagesController extends AppController
         parent::initialize();
         // $this->Auth->allow(['']);
         $this->loadModel('Logs'); 
+        $this->loadModel('Users'); 
+        $this->loadModel('Payrolls'); 
+        $this->loadComponent('RequestHandler');
     }
 
     public function beforeRender(Event $event) {
@@ -123,11 +126,27 @@ class PagesController extends AppController
 
         // exit();
         
-        
+        $user_count = $this->Users->find()
+                      ->all()
+                      ->count();
+
+        $payroll_count = $this->Payrolls->find()
+                      ->all()
+                      ->count();         
+                      
+        $records = $this->Payrolls->find() 
+                    ->order(['id' => 'desc'])
+                    ->toList();
+
+        // debug($user_count);
+        // exit();
         $user = $this->Auth->user();
         $page = $this->setPageVariables('Home', 'Dashboard');   
         $this->set(compact('user'));
         $this->set(compact('page'));
+        $this->set(compact('user_count'));
+        $this->set(compact('payroll_count'));
+        $this->set(compact('records'));
         // exit();
     }
 
@@ -137,4 +156,27 @@ class PagesController extends AppController
             "sub_title" => $subtitle
         ];
     }
+
+    public function view($id =null)
+    {
+      //$this->layout = false;
+      $this->RequestHandler->respondAs('pdf', [
+          // Force download
+          'attachment' => true,
+          'charset' => 'UTF-8'
+      ]);
+    }
+
+
+
+    // public function cakePdfDownload($name = null)
+    // {
+    //     Configure::write('CakePdf.download', true);
+    //     Configure::write('CakePdf.filename', "MyCustomName.pdf");
+    // }
+
+    // public function view() {
+    //     Configure::write('CakePdf.download', true);
+    //     Configure::write('CakePdf.filename', "MyCustomName.pdf");
+    // }
 }

@@ -79,6 +79,10 @@ class PayrollsTable extends Table
             ->requirePresence('file', 'create')
             ->notEmpty('file');
 
+        $validator
+            ->boolean('is_thirteen_month_pay')
+            ->allowEmpty('is_thirteen_month_pay');
+
         return $validator;
     }
 }

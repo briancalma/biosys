@@ -45,7 +45,8 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Message</a>
                     <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="/logout">Log Out</a>
+                    <?= $this->Html->link('Logout', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'btn btn-default btn-flat dropdown-item'])?>
+                    <!-- <a class="dropdown-item" href="/logout">Log Out</a> -->
                 </div>
             </div>
         </div>

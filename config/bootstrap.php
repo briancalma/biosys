@@ -197,3 +197,37 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+
+// Plugin::load('CakePdf', ['bootstrap' => true]);
+
+// Configure::write('CakePdf', [
+//     'engine' => [
+//         'className' => 'CakePdf.Dompdf',
+//         'options' => [
+//             'print-media-type' => false,
+//             'outline' => true,
+//             'dpi' => 96
+//         ]
+//     ],
+//     'pageSize' => 'Letter',
+// ]);
+// define('DOMPDF_ENABLE_AUTOLOAD', false);
+// define('DOMPDF_ENABLE_HTML5PARSER', true);
+// define('DOMPDF_ENABLE_REMOTE', true);
+
+Plugin::load('CakePdf', ['bootstrap' => true]);
+
+Configure::write('CakePdf', [
+        'engine' => 'CakePdf.tcpdf',
+        'pageSize' => 'A4',
+        'margin' => [
+            'bottom' => 15,
+            'left' => 50,
+            'right' => 30,
+            'top' => 45
+        ],
+        'orientation' => 'landscape',
+        'download' => true,
+        'encoding' => 'UTF-8'
+    ]);

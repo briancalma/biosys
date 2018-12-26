@@ -44,12 +44,15 @@ use Cake\Routing\Route\DashedRoute;
  * constructor in your `src/Application.php` file to change this behavior.
  *
  */
+
+Router::extensions(['pdf']);
+
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
+     * its action called 'display', and we pasws a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
@@ -81,4 +84,11 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
+
 });
+
+
+// Router::scope('/pdf_download/:id', function (RouteBuilder $routes) {
+//     $routes->addExtensions(['pdf']);
+//     $routes->connect('/', ['controller' => 'Pages', 'action' => 'cake_pdf_download']);
+// });

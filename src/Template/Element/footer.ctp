@@ -11,6 +11,5 @@
                 <div id="datetimepicker12"></div>
             </div>
         </div>
-    </div>
-    
+    </div>    
 </div>
